@@ -1,0 +1,77 @@
+package 
+{
+	import flash.display.Sprite;
+	import flash.events.Event;
+	import flash.text.TextField;
+	
+	
+	/**
+	 * ...
+	 * @author Alexander Bram
+	 */
+	public class Main extends Sprite 
+	{
+			public var orc:String = "Orc";
+			public var orcDmg:int = 15;
+			public var orcHp:int = 100;
+			public var orcDmgGen:int;
+			public var human:String = "Human";
+			public var humanDmg:int = 15;
+			public var humanHp:int = 100;
+			public var humanDmgGen:int;
+		
+			public function Main():void 
+		{
+			if (stage) init();
+			else addEventListener(Event.ADDED_TO_STAGE, init);
+		}
+		
+		private function init(e:Event = null):void 
+		{
+			removeEventListener(Event.ADDED_TO_STAGE, init);
+			// entry point
+			
+			var t:TextField = new TextField();
+			addChild(t);
+			t.border = true;
+			t.height = 800;
+			t.width = 500;
+			
+			for (var i:int = 1; i <= 5 ; i++) 
+			{
+				orcDmgGen = orcDmg * Math.random() + 5;		//Generates the orc's damage given.
+				humanDmgGen = humanDmg* Math.random() + 5;	//Generates the human's damage given.
+				orcHp = orcHp - humanDmgGen;				//Generates the orc's damage taken.
+				humanHp = humanHp - orcDmgGen;				//Generates the human's damage taken.
+				
+				t.appendText ("Round " + String(i) + "!\n");		
+				t.appendText (human + " swings his sword hits " + orc + " causing " + String(humanDmgGen) + " damage" + "\n");
+				t.appendText (orc + " hurls a giant boulder and hits " + human + " causing " + String(orcDmgGen) + " damage" + "\n\n"); 
+				
+						
+				t.appendText (human + " now has " + humanHp + " HP!" + "\n");	
+				t.appendText (orc + " now has " + orcHp + " HP!" + "\n\n");		
+				
+				if (i == 5) 
+				{
+					if (humanHp > orcHp) 
+					{
+						t.appendText ("Human");
+					}
+					else if (humanHp == orcHp) 
+					{
+						t.appendText ("No one")
+					}
+					else 
+					{
+						t.appendText ("Orc");
+					}
+					t.appendText (" is the winner!");
+				}
+				
+			}
+		}
+		
+	}
+	
+}
