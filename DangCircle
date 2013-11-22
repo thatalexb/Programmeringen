@@ -1,0 +1,30 @@
+package  
+{
+	import flash.display.Sprite;
+	import flash.events.MouseEvent;
+	/**
+	 * ...
+	 * @author Alex
+	 */
+	public class DangCircle extends Sprite
+	{
+		
+		public function DangCircle() 
+		{
+			var randomPosX:int = Math.random() * 800;
+			var randomPosY:int = Math.random() * 600;
+			var randomColor:int = 0xFFFFFF * Math.random();
+			this.graphics.beginFill (0xFF0000);
+			this.graphics.drawCircle (randomPosX, randomPosY, 15);
+			this.graphics.endFill();
+			
+			this.addEventListener(MouseEvent.CLICK, removeAllCircles)
+		}
+		
+		private function removeAllCircles(e:MouseEvent):void 
+		{
+			
+		}
+	}
+
+}
