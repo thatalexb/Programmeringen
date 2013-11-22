@@ -1,4 +1,0 @@
-Programmeringen
-===============
-
-Programmeringstuffs hamnar här
